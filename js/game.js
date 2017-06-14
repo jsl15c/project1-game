@@ -8,98 +8,196 @@ var gridArr = [
 ];
 
 var initialTileVal = [2, 4];
-var randomVal = initialTileVal[Math.floor(Math.random() * initialTileVal.length)];
 
-// generates gam board
+// for new tiles
+var randomRow, randomCol;
 
-function drawGrid() {
+var newTileValue;
+
+// generates game board
+function redrawGrid() {
   $('.game-container').empty();
   for (var i = 0; i < gridArr.length; i++) {
-    var row = `<div class="row row-${i}">`;
+    var row = '';
 
     for (var j = 0; j < gridArr[i].length; j++) {
-    var col = `<div class="cell cell-${j}"></div>`;
+    var col = '';
 
-    row += col;
+    row += `<div class="cell cell-${i}-${j}"></div>`;
     }
-    row += '</div>';
     $('.game-container').append(row);
   }
 }
 
-// generate random tile - only two in the first round
 
-
-// generate tiles
-function genTiles() {
-  // generate 2 tiles for first round
-  var randomRow, randomCol;
+function makeTiles() {        // makeTiles() creates initial and proceeding tile for the game
+  // ONLY FOR INITIAL TILES
+  var randomVal = initialTileVal[Math.floor(Math.random() * initialTileVal.length)];
 
   if (round === 1) {
-      var rowTemp, colTemp;
-
+  var rowTemp, colTemp, valTemp;
     for (var i = 0; i < 2; i++) {
-
       randomRow = Math.floor(Math.random() * 4);
       randomCol = Math.floor(Math.random() * 4);
-
       while ((rowTemp === randomRow) && (colTemp === randomCol)) {
         randomRow = Math.floor(Math.random() * 4);
         randomCol = Math.floor(Math.random() * 4);
       }
-
       rowTemp = randomRow;
       colTemp = randomCol;
-      console.log(randomRow, randomCol);
-      console.log('');
-      console.log(rowTemp, colTemp);
+      // valTemp = randomVal;
 
-      $(`.row-${randomRow} .cell-${randomCol}`).addClass('active');
-      gridArr[randomRow][randomCol] = randomVal;
+      gridArr[randomRow][randomCol] = 2;
     }
-    round++;
+    round = null;
   }
   else {
-    randomRow = Math.floor(Math.random() * 4);
-    randomCol = Math.floor(Math.random() * 4);
-    $(`.row-${randomRow} .cell-${randomCol}`).addClass('active');
-    gridArr[randomRow][randomCol] = randomVal;
+    var newTileRow, newTileCol;
+    newTileRow = Math.floor(Math.random() * 4);
+    newTileCol = Math.floor(Math.random() * 4);
+      for (var m = 0; m < gridArr.length; m++) {
+        for (var n = 0; n < gridArr[m].length; n++) {
+          while (gridArr[newTileRow][newTileCol] === gridArr[m][n]) {
+            newTileRow = Math.floor(Math.random() * 4);
+            newTileCol = Math.floor(Math.random() * 4);
+          }
+        }
+      }
+      // randomVal = initialTileVal[Math.floor(Math.random() * initialTileVal.length)];
+      gridArr[newTileRow][newTileCol] = 2;
+  }
+  fillTile();
+}
+
+function fillTile() {
+  for (var i = 0; i < gridArr.length; i++) {
+    for (var j = 0; j < gridArr[i].length; j++) {
+      if(gridArr[i][j] === 2) {
+        $(`.cell-${i}-${j}`).addClass('bg-2');
+      }
+      else if(gridArr[i][j] === 4) {
+        $(`.cell-${i}-${j}`).addClass('bg-4');
+      }
+      else if(gridArr[i][j] === 8) {
+        $(`.cell-${i}-${j}`).addClass('bg-8');
+      }
+      else if(gridArr[i][j] === 16) {
+        $(`.cell-${i}-${j}`).addClass('bg-16');
+      }
+      else if(gridArr[i][j] === 32) {
+        $(`.cell-${i}-${j}`).addClass('bg-32');
+      }
+      else if(gridArr[i][j] === 64) {
+        $(`.cell-${i}-${j}`).addClass('bg-64');
+      }
+      else if(gridArr[i][j] === 128) {
+        $(`.cell-${i}-${j}`).addClass('bg-128');
+      }
+      else if(gridArr[i][j] === 256) {
+        $(`.cell-${i}-${j}`).addClass('bg-256');
+      }
+      else if(gridArr[i][j] === 512) {
+        $(`.cell-${i}-${j}`).addClass('bg-512');
+      }
+      else if(gridArr[i][j] === 1024) {
+        $(`.cell-${i}-${j}`).addClass('bg-1024');
+      }
+      else if(gridArr[i][j] === 2048) {
+        $(`.cell-${i}-${j}`).addClass('bg-2048');
+      }
+    }
   }
 }
 
-function move() {
+function moveUp() {
+  for (var i = 0; i < gridArr.length; i++) {
+    for (var j = 0; j < gridArr[i].length; j++) {
+      if (gridArr[i][j] !== null  && i !== 0) {
+        gridArr[0][j] = newTileValue;    // transfers old value to new tile
+        gridArr[i][j] = null;             // removes value from old tile
+        $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
+        $(`.cell-0-${j}`).addClass(`bg-2`); // function to determine which class to add
+      }
+    }
+  }
+}
+
+function moveDown() {
+  for (var i = 0; i < gridArr.length; i++) {
+    for (var j = 0; j < gridArr[i].length; j++) {
+      if (gridArr[i][j] !== null  && i !== 3) {
+        gridArr[3][j] = gridArr[i][j];    // transfers old value to new tile
+        gridArr[i][j] = null;             // removes value from old tile
+        $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
+        $(`.cell-3-${j}`).addClass('bg-2'); // function to determine which class to add
+      }
+    }
+  }
+}
+
+function moveLeft() {
+  for (var i = 0; i < gridArr.length; i++) {
+    for (var j = 0; j < gridArr[i].length; j++) {
+      if (gridArr[i][j] !== null && j !== 0) {
+        gridArr[i][0] = gridArr[i][j];    // transfers old value to new tile
+        gridArr[i][j] = null;             // removes value from old tile
+        $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
+        $(`.cell-${i}-0`).addClass('bg-2'); // function to determine which class to add
+      }
+    }
+  }
+}
+
+function moveRight() {
+  for (var i = 0; i < gridArr.length; i++) {
+    for (var j = 0; j < gridArr[i].length; j++) {
+      if (gridArr[i][j] !== null && j !== 3) {
+        gridArr[i][3] = gridArr[i][j];  // transfers old value to new tile
+        gridArr[i][j] = null;           // removes value from old tile
+        $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
+        $(`.cell-${i}-3`).addClass('bg-2'); // function to determine which class to add
+      }
+    }
+  }
+}
+
+// user interaction with arrow keys
+$(document).ready(function() {
   $(document).keydown(function (event) {
-    // event.preventDefault();
+    if (event.which === 38 || event.which === 39 || event.which === 40 || event.which === 37) {
+      event.preventDefault();
+    }
     // up arrow key
     if (event.which === 38) {
-
+      moveUp();
+      makeTiles();
+      return;
+      // makeTiles();
     }
     // right arrow key
     else if (event.which === 39) {
-
+      moveRight();
+      makeTiles();
+      return;
     }
     // down arrow key
     else if (event.which === 40) {
+      moveDown();
+      makeTiles();
+      return;
 
     }
-    // right arrow key
+    // left arrow key
     else if (event.which === 37) {
-
+      moveLeft();
+      makeTiles();
+      return;
     }
   });
-}
-
-function addNumbers() {
-
-}
-
-
-
-
+});
 
 // starts game, calls other functions
 function startGame() {
-  drawGrid();
-  genTiles();
-  move();
+  redrawGrid();
+  makeTiles();
 }
