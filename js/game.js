@@ -44,13 +44,12 @@ function makeTiles() {        // makeTiles() creates initial and proceeding tile
       rowTemp = randomRow;
       colTemp = randomCol;
       // valTemp = randomVal;
-
+      round = null;
       gridArr[randomRow][randomCol] = 2;
     }
   }
   else {
     var newTileRow, newTileCol;
-    round = null;
     newTileRow = Math.floor(Math.random() * 4);
     newTileCol = Math.floor(Math.random() * 4);
       for (var m = 0; m < gridArr.length; m++) {
