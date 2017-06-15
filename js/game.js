@@ -12,8 +12,6 @@ var initialTileVal = [2, 4];
 // for new tiles
 var randomRow, randomCol;
 
-var newTileValue;
-
 // generates game board
 function redrawGrid() {
   $('.game-container').empty();
@@ -181,34 +179,42 @@ function moveRight() {
       if (gridArr[i][j] !== null && j !== 3) {
         if (gridArr[i][j] === gridArr[i][j + 3]) {
           gridArr[i][3] = gridArr[i][j]*2;
-          gridArr[i][j] = null;
           $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
-          // $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
-          $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`);
+          $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
+
+          if (gridArr[i][j] !== null) {
+            gridArr[i][j] = null;
+          }
+
         }
 
         else if (gridArr[i][j] === gridArr[i][j + 2]) {
           gridArr[i][3] = gridArr[i][j]*2;
-          gridArr[i][j] = null;
           $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
-          // $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
-          $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`);
+          $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
+
+          if (gridArr[i][j] !== null) {
+            gridArr[i][j] = null;
+          }
+
         }
 
         else if (gridArr[i][j] === gridArr[i][j + 1]) {
-          gridArr[i][3] = (gridArr[i][j] + gridArr[i][j]);
-          gridArr[i][j] = null;
+          gridArr[i][3] = gridArr[i][j]*2;
           $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
-          // $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
-          $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`);
+          $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
+
+          if (gridArr[i][j] !== null) {
+            gridArr[i][j] = null;
+          }
+
         }
 
         else {
             gridArr[i][3] = gridArr[i][j];   // transfers old value to new tile
-            gridArr[i][j] = null;             // removes value from old tile
+            gridArr[i][j] = null;
             $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
-            // $(`.cell-${i}-3`).addClass('bg-2'); // function to determine which class to add
-            $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`);
+            $(`.cell-${i}-3`).addClass('bg-2'); // function to determine which class to add
           }
       }
     }
