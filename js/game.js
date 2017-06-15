@@ -151,8 +151,9 @@ function moveDown() {
 
         else {
           gridArr[3][j] = gridArr[i][j];
+          console.log("yo");
           $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
-          $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
+          $(`.cell-3-${j}`).addClass(`bg-${gridArr[3][j]}`); // function to determine which class to add
           gridArr[i][j] = null;
           // console.log(gridArr[j]);
           }
@@ -280,7 +281,7 @@ $(document).ready(function() {
     // down arrow key
     else if (event.which === 40) {
       moveDown();
-      makeTiles(); 
+      makeTiles();
 
 
     }
