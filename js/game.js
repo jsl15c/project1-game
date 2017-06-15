@@ -281,6 +281,13 @@ $(document).ready(function() {
     else if (event.which === 40) {
       moveDown();
       makeTiles();
+      for (var i = 0; i < gridArr.length; i++) {
+        for (var j = 0; j < gridArr[i].length; j++) {
+          if (gridArr[i][j] === 8) {
+            $('.win-modal').fadeIn(300);
+          }
+        }
+      }
 
 
     }
