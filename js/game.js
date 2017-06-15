@@ -123,7 +123,7 @@ function moveDown() {
     for (var j = 0; j < gridArr[i].length; j++) {
       if (gridArr[i][j] !== null && i !== 3) {
         if (gridArr[i][j] === gridArr[i + 3][j]) {
-          gridArr[3][j] = gridArr[i][j] + gridArr[i + 3][j];
+          gridArr[3][j] = gridArr[i][j] + gridArr[i + 2][j];
           $(`.cell-${i}-${j}, .cell-${i + 3}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
           $(`.cell-3-${j}`).addClass(`bg-${gridArr[3][j]}`); // function to determine which class to add
           gridArr[i][j] = null;
