@@ -181,38 +181,23 @@ function moveRight() {
           gridArr[i][3] = gridArr[i][j]*2;
           $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
           $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
-
-          if (gridArr[i][j] !== null) {
-            gridArr[i][j] = null;
-          }
-
         }
 
         else if (gridArr[i][j] === gridArr[i][j + 2]) {
           gridArr[i][3] = gridArr[i][j]*2;
           $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
           $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
-
-          if (gridArr[i][j] !== null) {
-            gridArr[i][j] = null;
-          }
-
         }
 
         else if (gridArr[i][j] === gridArr[i][j + 1]) {
           gridArr[i][3] = gridArr[i][j]*2;
           $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
           $(`.cell-${i}-3`).addClass(`bg-${gridArr[i][3]}`); // function to determine which class to add
-
-          if (gridArr[i][j] !== null) {
-            gridArr[i][j] = null;
-          }
-
         }
 
         else {
             gridArr[i][3] = gridArr[i][j];   // transfers old value to new tile
-            gridArr[i][j] = null;
+            // gridArr[i][j] = null;
             $(`.cell-${i}-${j}`).removeClass('bg-2 bg-4 bg-8 bg-16 bg-32 bg-64 bg-128 bg-256 bg-512 bg-1024 bg-2084');
             $(`.cell-${i}-3`).addClass('bg-2'); // function to determine which class to add
           }
@@ -230,13 +215,12 @@ $(document).ready(function() {
     // up arrow key
     if (event.which === 38) {
       moveUp();
-      // makeTiles();
 
-      // makeTiles();
     }
     // right arrow key
     else if (event.which === 39) {
       moveRight();
+      removeEmptyTile();
       // makeTiles();
 
     }
