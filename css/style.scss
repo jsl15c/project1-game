@@ -144,7 +144,28 @@ canvas {
     animation:medSpin 2.5s ease-in-out infinite;
   }
 
+  .party-on {
+    animation:disco 0.5s linear infinite;
+  }
+
+
+
   @keyframes medSpin {
     // 50% {transform: rotate3d(0,0,1,360deg)}
     100% {transform: rotate3d(0,0,1,360deg)}
+  }
+
+  @keyframes disco {
+    0% {background:#FF0AA5}
+    10% {background-color:#BC2C1A}
+    20% {background:#FFFA00}
+    30% {background:#2F52E0}
+    40% {background:#E3170A}
+    50% {background:#8CFF7F}
+    60% {background:#45F0DF}
+    70% {background:#9838FF}
+    80% {background:#FF7B00}
+    90% {background:#FF2100}
+    100% {background:#C147FF}
+
   }

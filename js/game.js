@@ -243,7 +243,8 @@ $('.diff').hover(function() {
 });
 
 $('.easy').click(function() {
-  $('canvas').removeClass('med-diff, hard-diff');
+  $('canvas').removeClass('med-diff');
+  $('canvas').removeClass('hard-diff');
 });
 
 $('.med').click(function() {
@@ -263,5 +264,5 @@ $('.close').click(function() {
 });
 
 $('.disc').click(function() {
-  $('canvas').toggleClass('display');
+  $('body').toggleClass('party-on');
 });
