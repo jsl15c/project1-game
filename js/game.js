@@ -31,24 +31,6 @@ function fillTiles(gridArr) {
       break;
     case 4 : ctx.fillStyle = '#000';
       break;
-    case 8 : ctx.fillStyle = '#000';
-      break;
-    case 16 : ctx.fillStyle = '#000';
-      break;
-    case 32 : ctx.fillStyle = '#000';
-      break;
-    case 64 : ctx.fillStyle = '#000';
-      break;
-    case 128 : ctx.fillStyle = '#000';
-      break;
-    case 256 : ctx.fillStyle = '#000';
-      break;
-    case 512 : ctx.fillStyle = '#000';
-      break;
-    case 1024 : ctx.fillStyle = '#000';
-      break;
-    case 2048 : ctx.fillStyle = '#000';
-      break;
     default:ctx.fillStyle = '#000';
   }
 
